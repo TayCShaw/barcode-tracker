@@ -1,0 +1,5 @@
+Program is attempting to use Microsoft Access as a database
+for storing item data. This is done by UCanAccess, which
+can be found at http://ucanaccess.sourceforge.net/site.html#home
+and set up instructions found at 
+https://stackoverflow.com/questions/21955256/manipulating-an-access-database-from-java-without-odbc/21955257#21955257
