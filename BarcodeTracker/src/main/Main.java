@@ -2,7 +2,6 @@ package main;
 
 import java.io.IOException;
 import java.sql.*;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import javafx.application.Application;
@@ -55,6 +54,10 @@ public class Main extends Application{
 		primaryStage.show();
 	}
 	
+	/**
+	 * Getter method for returning the current primary stage.
+	 * @return The current primaryStage
+	 */
 	public static Stage getStage() {
 		return primaryStage;
 	}
@@ -62,13 +65,13 @@ public class Main extends Application{
 	/**
 	 * Primarily used for changing the scene in a stage.
 	 * @param fxml Name of the fxml document to load
-	 * @throws IOException 
+	 * @throws IOException If fxml is not a valid fxml file
 	 */
 	public void switchScene(String fxml) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(fxml));
 		primaryStage.setScene(new Scene(root));
-		
 	}
+	
 	
 	/*
 	 * Prints the current stocked inventory
@@ -148,27 +151,11 @@ public class Main extends Application{
 				
 				System.out.println("Item count updated! Item count now at: " + itemCount);
 			}else {
-//				System.out.print("UPC Not Found. Please enter more information."
-//						+ "\nBrand Name: ");
-//				scannerAddItem.nextLine();// eats an extra \n
-//				String itemBrand = scannerAddItem.nextLine(); 
-//				
-//				System.out.print("Item Name: ");
-//				String itemName = scannerAddItem.nextLine();
-//				
-//				System.out.print("Initial Item Count: ");
-//				int itemCount = scannerAddItem.nextInt();
-//				
-//				System.out.print("Item to be added: ");
-//				System.out.println(itemCount + " of " + itemBrand + 
-//						" " + itemName + " with UPC " + userUPC);
-////possible				System.out.println("Does this look correct? Y/N");
 				Item itemToAdd = new Item();
 				itemToAdd.setItemName("");
-				
 				System.out.println("UPC not found. Please enter more information!");
+				
 				while(itemToAdd.getItemName() == "") {
-					System.out.println("~~in whileLoop");
 					itemToAdd = newItemInformation(scannerAddItem, userUPC);
 				}
 				
@@ -234,7 +221,7 @@ public class Main extends Application{
 	}
 	
 	
-	/*
+	/**
 	 * 
 	 */
 	static void removeItem(Connection conn) {
@@ -243,8 +230,8 @@ public class Main extends Application{
 	}
 
 
-	/*
-	 * Prints item information
+	/**
+	 * 
 	 */
 	static void printItemInformation() {
 		

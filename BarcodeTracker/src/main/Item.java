@@ -8,17 +8,17 @@ public class Item {
 	private int itemCount = 0;
 
 	public Item() {
-		String itemBrand = this.itemBrand;
-		String itemName = this.itemName;
-		String itemUPC = this.itemUPC;
-		int itemCount = this.itemCount;
+		itemBrand = itemBrand;
+		itemName = this.itemName;
+		itemUPC = this.itemUPC;
+		itemCount = this.itemCount;
 	}
 	
 	public Item(String brand, String name, String upc) {
-		String itemBrand = brand;
-		String itemName = name;
-		String itemUPC = upc;
-		int itemCount = 0;
+		itemBrand = brand;
+		itemName = name;
+		itemUPC = upc;
+		itemCount = 0;
 	}
 
 	public String getItemBrand() {
