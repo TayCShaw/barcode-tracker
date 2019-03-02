@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
+<BorderPane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.HomeController">
    <center>
-      <VBox BorderPane.alignment="CENTER">
+      <VBox prefHeight="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
             <MenuBar>
               <menus>
@@ -33,7 +32,7 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <VBox alignment="BOTTOM_CENTER" prefHeight="500.0" prefWidth="600.0">
+            <VBox alignment="BOTTOM_CENTER">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
