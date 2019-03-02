@@ -13,7 +13,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
-	private static Stage primaryStage = new Stage();
+	private static Stage primaryStage = null;
 	
 	
 	public static void main(String[] args){
@@ -51,7 +51,10 @@ public class Main extends Application{
 		Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 		primaryStage.setTitle("Inventory Tracker");
 		primaryStage.setScene(new Scene(root, 800, 500));
+		primaryStage.setMinHeight(500);
+		primaryStage.setMinWidth(500);
 		primaryStage.show();
+		this.primaryStage = primaryStage;
 	}
 	
 	/**
@@ -69,7 +72,11 @@ public class Main extends Application{
 	 */
 	public void switchScene(String fxml) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(fxml));
-		primaryStage.setScene(new Scene(root));
+		Scene scene = this.primaryStage.getScene();
+//		scene = new Scene(root, 700, 450);
+//		primaryStage.setScene(scene);
+		scene = new Scene(root, 700, 450);
+		this.primaryStage.setScene(scene);
 	}
 	
 	
