@@ -16,7 +16,7 @@ public class HomeController extends Main{
 	public void addButtonClicked(ActionEvent event) throws IOException {
 		switchScene("AddItem.fxml");
 		getStage().setTitle("Add Item");
-		getStage().show();
+//		getStage().show();
 	}
 
 	
@@ -32,7 +32,7 @@ public class HomeController extends Main{
 	public void deleteButtonClicked(ActionEvent event) throws IOException {
 		switchScene("RemoveItem.fxml");
 		getStage().setTitle("Delete Item");
-		getStage().show();
+//		getStage().show();
 	}
 	
 	
