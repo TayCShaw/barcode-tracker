@@ -1,11 +1,12 @@
 package main;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
-public class MainController {
+public class MainController extends Main{
 	
 	@FXML
 	public Button btnBack;
@@ -18,12 +19,12 @@ public class MainController {
 	 * https://stackoverflow.com/questions/25037724/
 	 * how-to-close-a-java-window-with-a-button-click-javafx
 	 * -project/25038465
+	 * @throws IOException 
 	 * 
 	 */
 	@FXML
-	public void backButtonClick(ActionEvent event) {
-		Stage stage = (Stage) btnBack.getScene().getWindow();
-		stage.close();
-		
+	public void backButtonClick(ActionEvent event) throws IOException {
+		switchScene("Home.fxml");
+		getStage().setTitle("Inventory Tracker");
 	}
 }
