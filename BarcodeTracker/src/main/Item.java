@@ -5,13 +5,13 @@ public class Item {
 	private String itemBrand;
 	String itemName;
 	private String itemUPC;
-	private int itemCount = 0;
+	private int itemCount;
 
 	public Item() {
-		itemBrand = itemBrand;
-		itemName = this.itemName;
-		itemUPC = this.itemUPC;
-		itemCount = this.itemCount;
+		itemBrand = "";
+		itemName = "";
+		itemUPC = "";
+		itemCount = 0;
 	}
 	
 	public Item(String brand, String name, String upc) {
