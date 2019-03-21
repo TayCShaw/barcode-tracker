@@ -11,7 +11,6 @@ public class MainController extends Main{
 	@FXML
 	public Button btnBack;
 	
-	
 	/**
 	 * Exits out of the current window and goes back to the main window.
 	 * 

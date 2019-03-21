@@ -16,7 +16,7 @@ public class Main extends Application{
 	private static Stage primaryStage = null;
 	
 	
-	public static void main(String[] args){
+	public static void main(String[] args) throws SQLException{
 		Connection conn;
 		Scanner scannerUserInput = new Scanner(System.in);
 		int userInput;
@@ -25,7 +25,7 @@ public class Main extends Application{
 		 *ALL CONSOLE-BASED PROGRAM CODE 
 		 */
 //		try {
-//			conn = DriverManager.getConnection("jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb");
+			conn = DriverManager.getConnection("jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb");
 //			
 //			System.out.println("-----WELCOME TO YOUR INVENTORY TRACKER-----");
 //			System.out.println("What would you like to do? Press the"
@@ -91,8 +91,9 @@ public class Main extends Application{
 	/**
 	 * CONSOLE-BASED Prints the current stocked inventory
 	 * @param conn Connection to the database
+	 * @throws SQLException 
 	 */
-	static void printInventory(Connection conn) {
+	static void printInventory(Connection conn) throws SQLException {
 		System.out.println("\n----------INVENTORY----------");
 		
 		String query = "Select ITEM_NAME, ITEM_BRAND, ITEM_COUNT, ITEM_UPC "
@@ -135,8 +136,9 @@ public class Main extends Application{
 	/**
 	 * CONSOLE-BASED Attempts to add an item to the database.
 	 * @param Conn The connection to the database.
+	 * @throws SQLException 
 	 */
-	static void addItem(Connection Conn) {
+	static void addItem(Connection Conn) throws SQLException {
 		Scanner scannerAddItem = new Scanner(System.in);
 		String searchString;
 		String updateString;
