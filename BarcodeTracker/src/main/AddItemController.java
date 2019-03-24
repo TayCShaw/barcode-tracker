@@ -103,6 +103,8 @@ public class AddItemController extends MainController {
 				lblActionDone.setText("Added new item! " + txtfieldQuantity.getText() + 
 						" of " + txtfieldBrand.getText() + " " + txtfieldItem.getText());
 				lblActionDone.setVisible(true);
+			}else {
+				lblErrorMessage.setText("ERROR. Problem adding new item.");
 			}
 		}else if(rs == 1) {
 			ResultSet grabbedItem = grabInfo.executeQuery();
