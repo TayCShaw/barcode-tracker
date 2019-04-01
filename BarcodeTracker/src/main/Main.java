@@ -14,18 +14,19 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	private static Stage primaryStage = null;
-	
+	static Connection conn; 
+	static String connectionString = "jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb";
 	
 	public static void main(String[] args) throws SQLException{
-		Connection conn;
-		Scanner scannerUserInput = new Scanner(System.in);
-		int userInput;
+		conn = DriverManager.getConnection(connectionString);
+//		Scanner scannerUserInput = new Scanner(System.in);
+//		int userInput;
 		
 		/*
 		 *ALL CONSOLE-BASED PROGRAM CODE 
 		 */
 //		try {
-			conn = DriverManager.getConnection("jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb");
+
 //			
 //			System.out.println("-----WELCOME TO YOUR INVENTORY TRACKER-----");
 //			System.out.println("What would you like to do? Press the"
