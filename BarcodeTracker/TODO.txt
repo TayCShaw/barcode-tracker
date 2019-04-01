@@ -1,0 +1,14 @@
+3/31/19:
+--Fixed the AddItemController class. Done with that page for this version
+of this program until more testing is done and more problems are found.
+
+LEFT OFF ON:
+--Handing errors in the RemoveItemController class. Handling
+two cases that turn the same result: 
+A) UPC is entered, confirm is entered, confirm hit again, but no quantity 
+is entered. 
+B) UPC is entered, confirm hit again, but UPC was changed. Want to handle 
+that differently?
+
+--Possibly throw a clear button on the RemoveItem.fxml page
+--
