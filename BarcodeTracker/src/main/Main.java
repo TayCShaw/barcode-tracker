@@ -15,7 +15,7 @@ public class Main extends Application{
 
 	private static Stage primaryStage = null;
 	static Connection conn; 
-	static String connectionString = "jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb";
+	static String connectionString = "jdbc:ucanaccess://./items1.accdb";
 	
 	public static void main(String[] args) throws SQLException{
 		conn = DriverManager.getConnection(connectionString);
