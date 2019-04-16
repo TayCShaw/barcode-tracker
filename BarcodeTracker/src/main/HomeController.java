@@ -5,7 +5,7 @@ import java.io.IOException;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 
-public class HomeController extends Main{
+public class HomeController extends MainController{
 	
 	/**
 	 * Switches the scene to the AddItem.fxml scene so the user can
@@ -16,7 +16,6 @@ public class HomeController extends Main{
 	public void addButtonClicked(ActionEvent event) throws IOException {
 		switchScene("AddItem.fxml");
 		getStage().setTitle("Add Item");
-//		getStage().show();
 	}
 
 	

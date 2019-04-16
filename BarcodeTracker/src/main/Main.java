@@ -14,15 +14,19 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	private static Stage primaryStage = null;
+	static Connection conn; 
+	static String connectionString = "jdbc:ucanaccess://./items1.accdb";
 	
-	
-	public static void main(String[] args){
-//		Connection conn;
+	public static void main(String[] args) throws SQLException{
+		conn = DriverManager.getConnection(connectionString);
 //		Scanner scannerUserInput = new Scanner(System.in);
 //		int userInput;
-//		
+		
+		/*
+		 *ALL CONSOLE-BASED PROGRAM CODE 
+		 */
 //		try {
-//			conn = DriverManager.getConnection("jdbc:ucanaccess://C:/CodeProjects/BarcodeTracker/items1.accdb");
+
 //			
 //			System.out.println("-----WELCOME TO YOUR INVENTORY TRACKER-----");
 //			System.out.println("What would you like to do? Press the"
@@ -38,15 +42,21 @@ public class Main extends Application{
 //				removeItem(conn);
 //			}else if(userInput == 4) {
 //				System.out.println("-----GOOD-BYE-----");
+//				scannerUserInput.close();
 //				System.exit(0);
 //			}
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
+		// END CONSOLE-BASED PROGRAM CODE
+		
 		launch(args);
 	}
 	
-	
+	/**
+	 * Launches the GUI for the program
+	 * @param primaryStage Stage that launches initially
+	 */
 	public void start(Stage primaryStage) throws Exception{
 		Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
 		primaryStage.setTitle("Inventory Tracker");
@@ -54,7 +64,7 @@ public class Main extends Application{
 		primaryStage.setMinHeight(500);
 		primaryStage.setMinWidth(500);
 		primaryStage.show();
-		this.primaryStage = primaryStage;
+		Main.primaryStage = primaryStage;
 	}
 	
 	/**
@@ -66,24 +76,25 @@ public class Main extends Application{
 	}
 	
 	/**
-	 * Primarily used for changing the scene in a stage.
+	 * Changes the scene of the stage by passing in an FXML file
+	 * to change to.
 	 * @param fxml Name of the fxml document to load
 	 * @throws IOException If fxml is not a valid fxml file
 	 */
 	public void switchScene(String fxml) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(fxml));
-		Scene scene = this.primaryStage.getScene();
-//		scene = new Scene(root, 700, 450);
-//		primaryStage.setScene(scene);
+		Scene scene = Main.primaryStage.getScene();
 		scene = new Scene(root, 700, 450);
-		this.primaryStage.setScene(scene);
+		Main.primaryStage.setScene(scene);
 	}
 	
 	
-	/*
-	 * Prints the current stocked inventory
+	/**
+	 * CONSOLE-BASED Prints the current stocked inventory
+	 * @param conn Connection to the database
+	 * @throws SQLException 
 	 */
-	static void printInventory(Connection conn) {
+	static void printInventory(Connection conn) throws SQLException {
 		System.out.println("\n----------INVENTORY----------");
 		
 		String query = "Select ITEM_NAME, ITEM_BRAND, ITEM_COUNT, ITEM_UPC "
@@ -123,7 +134,12 @@ public class Main extends Application{
 	 * ---FOUND? Update the count
 	 * ---NOT FOUND? Ask for more info and add the new item to DB
 	 */
-	static void addItem(Connection Conn) {
+	/**
+	 * CONSOLE-BASED Attempts to add an item to the database.
+	 * @param Conn The connection to the database.
+	 * @throws SQLException 
+	 */
+	static void addItem(Connection Conn) throws SQLException {
 		Scanner scannerAddItem = new Scanner(System.in);
 		String searchString;
 		String updateString;
@@ -153,10 +169,9 @@ public class Main extends Application{
 				updateString = "UPDATE ITEMS"
 						+ " SET ITEMS.ITEM_COUNT = " + itemCount
 						+ " WHERE ITEMS.ITEM_UPC = " + userUPC;
-				boolean us = stmt.execute(updateString);
-				
-				
-				System.out.println("Item count updated! Item count now at: " + itemCount);
+				if(!stmt.execute(updateString)) {
+					System.out.println("Item count updated! Item count now at: " + itemCount);
+				}
 			}else {
 				Item itemToAdd = new Item();
 				itemToAdd.setItemName("");
@@ -171,7 +186,11 @@ public class Main extends Application{
 						+ " ('" + itemToAdd.getItemName() + "', '" 
 						+ itemToAdd.getItemBrand() + "', "
 						+ itemToAdd.getItemCount() + ", '" + userUPC + "')";
-				boolean is = stmt.execute(updateString);
+				if(stmt.execute(updateString)) {
+					System.out.println("Item added into database!");
+				}else {
+					System.out.println("ERROR~!~ ITEM NOT ADDED");
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -180,8 +199,12 @@ public class Main extends Application{
 	}
 	
 	
-	/*
-	 * 
+	/**
+	 * CONSOLE-BASED Prompts user to enter new information for
+	 * an item that was not found in the database already.
+	 * @param userInput The Scanner object declared in Main, used for
+	 * taking user input
+	 * @param UPC The UPC String taken from the caller method
 	 */
 	static Item newItemInformation(Scanner userInput, String UPC) {
 		boolean looksGood = false;
@@ -196,6 +219,8 @@ public class Main extends Application{
 			System.out.print("Item name: ");
 			userItem.setItemName(userInput.nextLine());
 			
+			// INCREDIBLY WRONG. ONLY DOES ONE INCORRECT INPUT, ANY MORE AND CRASHES
+			// Move to a while loop
 			try {
 				System.out.print("Initial count: ");
 				userItem.setItemCount(userInput.nextInt());
