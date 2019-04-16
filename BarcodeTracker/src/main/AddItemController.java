@@ -80,7 +80,7 @@ public class AddItemController extends MainController {
 	 * @param event Any event that calls the function.
 	 */
 	public void confirmButtonClicked(ActionEvent event) throws SQLException {
-		if(txtfieldUPC.getLength() != 0 && txtfieldQuantity.getLength() != 0) { //&& txtfieldQuantity.getLength() != 0) {
+		if(txtfieldUPC.getLength() != 0 && txtfieldQuantity.getLength() != 0) {
 			lblQuantityError.setVisible(false);
 			lblUPCError.setVisible(false);
 			

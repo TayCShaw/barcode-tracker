@@ -8,10 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 public class RemoveItemController extends MainController {
 	
@@ -45,7 +48,8 @@ public class RemoveItemController extends MainController {
 		 * txtfieldQuantity is visible based on if the user presses
 		 * "ENTER" or "TAB" while in the UPC box.
 		 */
-		if(txtfieldUPC.getLength() != 0 && !txtfieldQuantity.isVisible()) {
+		if((txtfieldUPC.getLength() != 0 && !txtfieldQuantity.isVisible()) || 
+				(txtfieldUPC.getLength() != 0 && txtfieldQuantity.getLength() == 0)) {
 			lblUPCErrorMessage.setVisible(false);
 			lblErrorMessage.setVisible(false);
 			
@@ -61,10 +65,13 @@ public class RemoveItemController extends MainController {
 					lblItemQuantity.setVisible(true);
 					
 					lblQuantity.setVisible(true);
-					txtfieldQuantity.setVisible(true);		
+					txtfieldQuantity.setVisible(true);
+					
+					txtfieldQuantity.requestFocus();
 				}else {
-					lblErrorMessage.setText("Item with that UPC not found.");
-					lblErrorMessage.setVisible(true);
+					hideNameAndQuantity();
+					showError("Item with that UPC not found.");
+					
 				}
 			}catch(Exception e) {
 				System.out.println(e.toString());
@@ -87,8 +94,8 @@ public class RemoveItemController extends MainController {
 					}
 
 				}else if(removalResponse == 0){
-					lblErrorMessage.setText("Item with that UPC not found.");
-					lblErrorMessage.setVisible(true);
+					hideNameAndQuantity();
+					showError("Item with that UPC not found.");
 				}else if(removalResponse > 1) {
 					lblOutput.setText("Multiple items with that UPC found, both were updated.");
 					lblOutput.setVisible(true);
@@ -102,6 +109,34 @@ public class RemoveItemController extends MainController {
 			
 		}else if(txtfieldUPC.getLength() == 0) {
 			lblUPCErrorMessage.setVisible(true);
+		}
+	}
+	
+	
+	/**
+	 * 
+	 */
+	public void hideNameAndQuantity() {
+		lblItemQuantity.setVisible(false);
+		lblItemFull.setVisible(false);
+		lblQuantity.setVisible(false);
+		txtfieldQuantity.setVisible(false);
+	}
+	
+	
+	/**
+	 * 
+	 * @param errorMessage
+	 */
+	public void showError(String errorMessage) {
+		lblErrorMessage.setText(errorMessage);
+		lblErrorMessage.setVisible(true);
+	}
+	
+	
+	public void keyeventPressed(KeyEvent keyEvent) throws SQLException {
+		if(keyEvent.getCode() == KeyCode.ENTER) {
+			confirmButtonClicked(null);
 		}
 	}
 	

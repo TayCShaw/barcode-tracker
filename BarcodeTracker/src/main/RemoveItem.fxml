@@ -61,7 +61,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="txtfieldUPC" promptText="0123456789" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="txtfieldUPC" onKeyPressed="#keyeventPressed" promptText="0123456789" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="10.0" />
                      </GridPane.margin>
