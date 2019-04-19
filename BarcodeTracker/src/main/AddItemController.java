@@ -219,7 +219,6 @@ public class AddItemController extends MainController {
 	 * @throws SQLException
 	 */
 	public ResultSet grabItemInfo() throws SQLException {
-		Connection conn = Main.conn;
 		String grabItemInfo = "SELECT ITEMS.ITEM_NAME, ITEMS.ITEM_BRAND, ITEMS.ITEM_COUNT "
 				+ "FROM ITEMS WHERE ITEMS.ITEM_UPC = ?";
 		PreparedStatement grabInfo = conn.prepareStatement(grabItemInfo);

@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;

@@ -44,9 +44,11 @@ public class HomeController extends MainController{
 	
 	
 	/**
+	 * @throws IOException 
 	 * 
 	 */
-	public void viewButtonClicked(ActionEvent event) {
-		
+	public void viewButtonClicked(ActionEvent event) throws IOException {
+		switchScene("ViewInventory.fxml");
+		getStage().setTitle("Inventory");
 	}
 }
