@@ -87,7 +87,7 @@
                   </Button>
                   <Label fx:id="lblErrorMessage" textFill="RED" wrapText="true" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font name="System Bold Italic" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblUPCErrorMessage" text="Enter UPC" textFill="#cd1717" visible="false" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
@@ -132,6 +132,16 @@
                         <Insets left="10.0" />
                      </GridPane.margin>
                   </TextField>
+                  <Label fx:id="lblCurrentQuantity" text="Current Quantity" textAlignment="CENTER" visible="false" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btnFullyRemove" mnemonicParsing="false" onAction="#fullyRemoveItem" prefHeight="39.0" prefWidth="137.0" text="Fully Remove" visible="false" GridPane.halignment="RIGHT" GridPane.rowIndex="6" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
                </children>
             </GridPane>
          </children>

@@ -44,9 +44,13 @@ public class HomeController extends MainController{
 	
 	
 	/**
+	 * Switches the scene to the ViewInventory.fxml scene so the user 
+	 * can view the inventory they have so far.
+	 * @throws IOException If the ViewInventory.fxml page is missing
 	 * 
 	 */
-	public void viewButtonClicked(ActionEvent event) {
-		
+	public void viewButtonClicked(ActionEvent event) throws IOException {
+		switchScene("ViewInventory.fxml");
+		getStage().setTitle("Inventory");
 	}
 }

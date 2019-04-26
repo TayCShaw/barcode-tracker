@@ -83,6 +83,7 @@ public class AddItemController extends MainController {
 		if(txtfieldUPC.getLength() != 0 && txtfieldQuantity.getLength() != 0) {
 			lblQuantityError.setVisible(false);
 			lblUPCError.setVisible(false);
+			lblErrorMessage.setVisible(false);
 			
 			
 			// 0 if not found, 1 if found
@@ -102,9 +103,13 @@ public class AddItemController extends MainController {
 					lblActionDone.setVisible(false);
 				}
 				
-			// NO ROWS CHANGE, FIELDS VISIBLE = ITEM NOT THERE, ADD TO DB
-			}else if(itemUpdated == 0){
-				itemNotFound();				
+			// NO ROWS CHANGE, FIELD VISIBLE = ERROR WITH NUMBER
+			}else if(itemUpdated == 0 && lblGrabbedItem.isVisible()){
+				lblErrorMessage.setText("ERROR: Problem updating item count.");
+				lblErrorMessage.setVisible(true);
+				lblActionDone.setText("");
+			}else if(itemUpdated == 0) {
+				itemNotFound();
 			}else if(itemUpdated == 1) {
 				ResultSet itemInformation = grabItemInfo();
 				if(itemInformation.next()) {
@@ -113,7 +118,14 @@ public class AddItemController extends MainController {
 					lblActionDone.setVisible(true);
 				}
 			}	
-		}else {
+		}else if(txtfieldUPC.getLength() != 0){
+			if(searchItem().next()){
+				itemFound();
+			}else {
+				itemNotFound();
+			}
+		
+		}else{
 			if(txtfieldUPC.getLength() == 0){
 				lblUPCError.setVisible(true);
 			}else {
@@ -152,6 +164,13 @@ public class AddItemController extends MainController {
 		}
 	}
 	
+	
+	/**
+	 * Called when the mouse is clicked in the Quantity textfield after
+	 * the UPC has been entered. Accessibility method.
+	 * @param mouseEvent
+	 * @throws SQLException
+	 */
 	public void quantityMouseeventPressed(MouseEvent mouseEvent) throws SQLException {
 		if(txtfieldUPC.getLength() == 0) {
 			
@@ -219,11 +238,10 @@ public class AddItemController extends MainController {
 	 * @throws SQLException
 	 */
 	public ResultSet grabItemInfo() throws SQLException {
-		Connection conn = Main.conn;
 		String grabItemInfo = "SELECT ITEMS.ITEM_NAME, ITEMS.ITEM_BRAND, ITEMS.ITEM_COUNT "
 				+ "FROM ITEMS WHERE ITEMS.ITEM_UPC = ?";
 		PreparedStatement grabInfo = conn.prepareStatement(grabItemInfo);
-		grabInfo.setInt(1, Integer.parseInt(txtfieldUPC.getText()));
+		grabInfo.setString(1, txtfieldUPC.getText());
 		return(grabInfo.executeQuery());
 	}
 	
@@ -240,7 +258,7 @@ public class AddItemController extends MainController {
 		
 		conn = DriverManager.getConnection(connectionString);
 		PreparedStatement searchItems = conn.prepareStatement(searchForItem);
-		searchItems.setInt(1, Integer.parseInt(txtfieldUPC.getText()));
+		searchItems.setString(1, txtfieldUPC.getText());
 		
 		ResultSet rs = searchItems.executeQuery();
 		
@@ -259,8 +277,21 @@ public class AddItemController extends MainController {
 		Connection conn = Main.conn;
 		String updateItemQuantity = "UPDATE ITEMS SET ITEMS.ITEM_COUNT = ITEMS.ITEM_COUNT + ? WHERE ITEMS.ITEM_UPC = ? ";
 		PreparedStatement updateQuantity = conn.prepareStatement(updateItemQuantity);
+		updateQuantity.setString(2, txtfieldUPC.getText());
+		
+		// Check to see if quantity is: A) Greater than MAX_VALUE or B) Less than 0
+		try {
+			int quantity = Integer.parseInt(txtfieldQuantity.getText());
+			if(quantity < 0) {
+				return(0);
+			}
+		}catch(NumberFormatException e) {
+			System.out.println("NumberFormatException: ");
+			e.printStackTrace();
+			return(0);
+		}
 		updateQuantity.setInt(1, Integer.parseInt(txtfieldQuantity.getText()));
-		updateQuantity.setInt(2, Integer.parseInt(txtfieldUPC.getText()));
+
 		
 		return(updateQuantity.executeUpdate());
 	}
@@ -278,11 +309,21 @@ public class AddItemController extends MainController {
 		
 		String addItem = "INSERT INTO ITEMS (ITEM_NAME, ITEM_BRAND, ITEM_COUNT, ITEM_UPC) "
 				+ "VALUES (?, ?, ?, ?)";
+		
 		PreparedStatement insertItem = conn.prepareStatement(addItem);
 		insertItem.setString(1, txtfieldItem.getText());
 		insertItem.setString(2, txtfieldBrand.getText());
-		insertItem.setInt(3, Integer.parseInt(txtfieldQuantity.getText()));
-		insertItem.setInt(4, Integer.parseInt(txtfieldUPC.getText()));
+		insertItem.setString(4, txtfieldUPC.getText());
+		
+		if((Integer.parseInt(txtfieldQuantity.getText())) < 0 || 
+				Integer.parseInt(txtfieldQuantity.getText()) >= Integer.MAX_VALUE ||
+				Integer.parseInt(txtfieldQuantity.getText()) <= Integer.MIN_VALUE) {
+			return(0);
+		}else {
+			insertItem.setInt(3, Integer.parseInt(txtfieldQuantity.getText()));
+		}
+
+
 		
 		return(insertItem.executeUpdate());
 	}
