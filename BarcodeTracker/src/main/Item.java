@@ -1,56 +1,66 @@
 package main;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Item {
 
-	private String itemBrand;
-	String itemName;
-	private String itemUPC;
-	private int itemCount;
+	private SimpleStringProperty itemBrand;
+	private SimpleStringProperty itemName;
+	private SimpleStringProperty itemUPC;
+	private SimpleIntegerProperty itemCount;
 
 	public Item() {
-		itemBrand = "";
-		itemName = "";
-		itemUPC = "";
-		itemCount = 0;
+		itemBrand = new SimpleStringProperty("");
+		itemName = new SimpleStringProperty("");
+		itemUPC = new SimpleStringProperty("");
+		itemCount = new SimpleIntegerProperty(0);
 	}
 	
 	public Item(String brand, String name, String upc) {
-		itemBrand = brand;
-		itemName = name;
-		itemUPC = upc;
-		itemCount = 0;
+		itemBrand = new SimpleStringProperty(brand);
+		itemName = new SimpleStringProperty(name);
+		itemUPC = new SimpleStringProperty(upc);
+		itemCount = new SimpleIntegerProperty(0);
+	}
+	
+	public Item(String brand, String name, String upc, int count) {
+		itemBrand = new SimpleStringProperty(brand);
+		itemName = new SimpleStringProperty(name);
+		itemUPC = new SimpleStringProperty(upc);
+		itemCount = new SimpleIntegerProperty(count);
 	}
 
 	public String getItemBrand() {
-		return itemBrand;
+		return itemBrand.get();
 	}
 
 	public void setItemBrand(String itemBrand) {
-		this.itemBrand = itemBrand;
+		this.itemBrand.set(itemBrand);
 	}
 
 	public String getItemName() {
-		return itemName;
+		return itemName.get();
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setItemName(String name) {
+		this.itemName.set(name);
 	}
 
 	public String getItemUPC() {
-		return itemUPC;
+		return itemUPC.get();
 	}
 
 	public void setItemUPC(String itemUPC) {
-		this.itemUPC = itemUPC;
+		this.itemUPC.set(itemUPC);
 	}
 
 	public int getItemCount() {
-		return itemCount;
+		return itemCount.get();
 	}
 
 	public void setItemCount(int itemCount) {
-		this.itemCount = itemCount;
+		this.itemCount.set(itemCount);
 	}
 	
 }
