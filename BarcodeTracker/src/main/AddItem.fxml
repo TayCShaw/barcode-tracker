@@ -103,10 +103,13 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Label fx:id="lblErrorMessage" focusTraversable="false" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                  <Label fx:id="lblErrorMessage" focusTraversable="false" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.halignment="CENTER">
                      <GridPane.margin>
                         <Insets />
-                     </GridPane.margin></Label>
+                     </GridPane.margin>
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font></Label>
                   <Button fx:id="btnBack" mnemonicParsing="false" onAction="#backButtonClicked" prefWidth="100.0" text="Back" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6">
                      <font>
                         <Font size="18.0" />

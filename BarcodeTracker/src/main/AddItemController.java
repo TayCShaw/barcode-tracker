@@ -99,7 +99,6 @@ public class AddItemController extends MainController {
 							" of " + txtfieldBrand.getText() + " " + txtfieldItem.getText());
 					lblActionDone.setVisible(true);
 				}else {
-					lblErrorMessage.setText("ERROR. Problem adding new item.");
 					lblActionDone.setVisible(false);
 				}
 				
@@ -315,16 +314,21 @@ public class AddItemController extends MainController {
 		insertItem.setString(2, txtfieldBrand.getText());
 		insertItem.setString(4, txtfieldUPC.getText());
 		
-		if((Integer.parseInt(txtfieldQuantity.getText())) < 0 || 
-				Integer.parseInt(txtfieldQuantity.getText()) >= Integer.MAX_VALUE ||
-				Integer.parseInt(txtfieldQuantity.getText()) <= Integer.MIN_VALUE) {
-			return(0);
-		}else {
+		try {
+			int quantity = Integer.parseInt(txtfieldQuantity.getText());
+			if(quantity < 0) {
+				lblErrorMessage.setText("Failure: Negative quantity");
+				lblErrorMessage.setVisible(true);
+				return(0);
+			}
 			insertItem.setInt(3, Integer.parseInt(txtfieldQuantity.getText()));
+		}catch(NumberFormatException e) {
+			System.out.println("Error: NumberFormatException in insertItem()");
+			lblErrorMessage.setText("Failure: Invalid quantity");
+			lblErrorMessage.setVisible(true);
+			e.printStackTrace();
+			return(0);
 		}
-
-
-		
 		return(insertItem.executeUpdate());
 	}
 }

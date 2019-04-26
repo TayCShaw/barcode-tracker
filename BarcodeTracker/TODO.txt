@@ -13,3 +13,7 @@ AddItemController.java
 --Test for number of quantity to add. Check to see two things:
 	1) If the number is negative and 2) If the number is less than the maximum
 	Integer value.
+	
+
+--Method in certain classes for showing error messages, like showError()
+--Method in certain classes for visibility of certain labels, textfields on certain cases.
