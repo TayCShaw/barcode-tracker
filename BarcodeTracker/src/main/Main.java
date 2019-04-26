@@ -21,8 +21,7 @@ public class Main extends Application{
 	//static String connectionString = "jdbc:ucanaccess://./items1.accdb";
 	static String connectionString = "";
 	
-	public static void main(String[] args) throws SQLException{
-		
+	public static void main(String[] args) throws SQLException{	
 		createFile();
 		conn = DriverManager.getConnection(connectionString);
 		launch(args);
@@ -53,11 +52,11 @@ public class Main extends Application{
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		
+		}		
 		String dbUrl = "jdbc:ucanaccess://" + dbPath;
 		connectionString = dbUrl;
 	}
+	
 	
 	/**
 	 * Launches the GUI for the program
@@ -73,6 +72,7 @@ public class Main extends Application{
 		Main.primaryStage = primaryStage;
 	}
 	
+	
 	/**
 	 * Getter method for returning the current primary stage.
 	 * @return The current primaryStage
@@ -80,6 +80,7 @@ public class Main extends Application{
 	public static Stage getStage() {
 		return primaryStage;
 	}
+	
 	
 	/**
 	 * Changes the scene of the stage by passing in an FXML file
