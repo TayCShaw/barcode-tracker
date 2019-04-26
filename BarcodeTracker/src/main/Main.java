@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
-import java.util.Scanner;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +22,7 @@ public class Main extends Application{
 	static String connectionString = "";
 	
 	public static void main(String[] args) throws SQLException{
+		
 		createFile();
 		conn = DriverManager.getConnection(connectionString);
 		launch(args);
