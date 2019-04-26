@@ -42,6 +42,12 @@ public class ViewItemController extends MainController{
 	}
 
 	
+	/**
+	 * Grabs all of the information from all records in the table
+	 * to be displayed in the TableView on ViewInventory.fxml
+	 * @return ResultSet of all records in the ITEMS table
+	 * @throws SQLException If the query or prepareStatement fails.
+	 */
 	public ResultSet grabItemData() throws SQLException {
 		ResultSet rs;
 		String search = "Select * from ITEMS";
@@ -51,6 +57,15 @@ public class ViewItemController extends MainController{
 	}
 
 	
+	/**
+	 * Grabs the information from the records in the table by calling 
+	 * another method, then using the resulting ResultSet to add new 
+	 * Item objects to the to-be-returned ObservableList.
+	 * @return ObservableList of Item objects that will be used to
+	 * populate a TableView.
+	 * @throws SQLException If grabbing record data, or pulling
+	 * information from the ResultSet fails.
+	 */
 	public ObservableList<Item> fillData() throws SQLException{
 		ObservableList<Item> items = FXCollections.observableArrayList();
 		
