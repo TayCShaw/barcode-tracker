@@ -1,14 +1,15 @@
-3/31/19:
---Fixed the AddItemController class. Done with that page for this version
-of this program until more testing is done and more problems are found.
+4/25/19
 
-LEFT OFF ON:
---Handing errors in the RemoveItemController class. Handling
-two cases that turn the same result: 
-A) UPC is entered, confirm is entered, confirm hit again, but no quantity 
-is entered. 
-B) UPC is entered, confirm hit again, but UPC was changed. Want to handle 
-that differently?
+RemoveItemController.java
+-------------------------
+--Test for number of quantity to remove. Check to see two things:
+	1) If the number is negative and 2) If number will result in count < 0
+--Add functionality to remove/edit/add items from that page. This is more
+	meant for later stages of program once version 1 is completed
+	
 
---Possibly throw a clear button on the RemoveItem.fxml page
---
+AddItemController.java
+----------------------
+--Test for number of quantity to add. Check to see two things:
+	1) If the number is negative and 2) If the number is less than the maximum
+	Integer value.
