@@ -63,4 +63,12 @@ public class Item {
 		this.itemCount.set(itemCount);
 	}
 	
+	public String toString() {
+		System.out.println("Brand: " + getItemBrand());
+		System.out.println("Name: " + getItemName());
+		System.out.println("Count: " + getItemCount());
+		System.out.println("UPC: " + getItemUPC());		
+		return null;		
+	}
+	
 }

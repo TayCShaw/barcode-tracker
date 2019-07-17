@@ -67,7 +67,10 @@ public class Main extends Application{
 		primaryStage.setTitle("Inventory Tracker");
 		primaryStage.setScene(new Scene(root, 800, 500));
 		primaryStage.setMinHeight(500);
-		primaryStage.setMinWidth(500);
+		primaryStage.setMinWidth(800);
+		primaryStage.setMaxWidth(801);
+		primaryStage.setMaxHeight(501);
+		primaryStage.setResizable(true);
 		primaryStage.show();
 		Main.primaryStage = primaryStage;
 	}
