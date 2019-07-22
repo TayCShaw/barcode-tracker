@@ -127,12 +127,12 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetButtonClicked" prefHeight="39.0" prefWidth="88.0" text="Reset" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                  <Button fx:id="btnReset" mnemonicParsing="false" onAction="#resetButtonClicked" prefHeight="39.0" prefWidth="88.0" text="Reset" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSearch2" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="39.0" prefWidth="88.0" text="Search" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <Button fx:id="btnSearch2" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="39.0" prefWidth="88.0" text="Search" visible="false" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                      <font>
                         <Font size="18.0" />
                      </font>

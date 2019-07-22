@@ -87,7 +87,10 @@ public class ViewItemController extends MainController{
 	 * in the textboxes for editing.
 	 */
 	public void editButtonMenu(Item item) {
+		hideSearchButtons();
+		hideAllFields();
 		showAllFields();
+		btnReset.setVisible(true);
 		btnSaveUpdate.setVisible(true);
 		txtfieldUPC.setText(item.getItemUPC());
 		txtfieldBrand.setText(item.getItemBrand());
@@ -102,12 +105,7 @@ public class ViewItemController extends MainController{
 	 */
 	public void editButtonClicked(ActionEvent event) {
 		if(selectedItem != null) {
-			showAllFields();
-			btnSaveUpdate.setVisible(true);
-			txtfieldUPC.setText(selectedItem.getItemUPC());
-			txtfieldBrand.setText(selectedItem.getItemBrand());
-			txtfieldItem.setText(selectedItem.getItemName());
-			txtfieldQuantity.setText(Integer.toString(selectedItem.getItemCount()));
+			editButtonMenu(selectedItem);
 		}
 
 	}
@@ -152,31 +150,70 @@ public class ViewItemController extends MainController{
 	/**
 	 * Handles saving a new item to the database
 	 * @param event Event that causes the method to activate
+	 * @throws NumberFormatException 
+	 * @throws SQLException 
 	 */
-	public void saveButtonAddClicked(ActionEvent event) {
+	public void saveButtonAddClicked(ActionEvent event) throws NumberFormatException, SQLException{
 		Connection conn = Main.conn;
 		
-		String addItem = "INSERT INTO ITEMS (ITEM_NAME, ITEM_BRAND, ITEM_COUNT, ITEM_UPC) "
-				+ "VALUES (?, ?, ?, ?)";
+		int result = 0;
 		
-		PreparedStatement insertItem;
-		try {
-			insertItem = conn.prepareStatement(addItem);
-			insertItem.setString(1, txtfieldItem.getText());
-			insertItem.setString(2, txtfieldBrand.getText());
-			insertItem.setString(4, txtfieldUPC.getText());
+		txtareaStatus.setText("yo we in here"); // TEST LINE
+		
+		ResultSet rs = searchItem(txtfieldUPC.getText());
+		if(rs.next()) {
+			txtareaStatus.setText("yo we in here again"); // TEST LINE
+			String updateItemQuantity = "UPDATE ITEMS SET ITEMS.ITEM_COUNT = ITEMS.ITEM_COUNT + ? WHERE ITEMS.ITEM_UPC = ? ";
+			PreparedStatement updateQuantity;
 			try {
-				int quantity = Integer.parseInt(txtfieldQuantity.getText());
-				if(quantity < 0) {
+				updateQuantity = conn.prepareStatement(updateItemQuantity);
+				updateQuantity.setString(2, txtfieldUPC.getText());
+				updateQuantity.setInt(1, Integer.parseInt(txtfieldQuantity.getText()));
+				
+				result = updateQuantity.executeUpdate();
 
-				}
-				insertItem.setInt(3, Integer.parseInt(txtfieldQuantity.getText()));
-			}catch(NumberFormatException e) {
-
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} catch (SQLException e1) {
-			e1.printStackTrace();
+
+		}else {
+			
+			String addItem = "INSERT INTO ITEMS (ITEM_NAME, ITEM_BRAND, ITEM_COUNT, ITEM_UPC) "
+					+ "VALUES (?, ?, ?, ?)";
+			
+			PreparedStatement insertItem;
+			try {
+				insertItem = conn.prepareStatement(addItem);
+				insertItem.setString(1, txtfieldItem.getText());
+				insertItem.setString(2, txtfieldBrand.getText());
+				insertItem.setString(4, txtfieldUPC.getText());
+				try {
+					int quantity = Integer.parseInt(txtfieldQuantity.getText());
+					if(quantity >= 0) {
+						insertItem.setInt(3, Integer.parseInt(txtfieldQuantity.getText()));
+					}
+					
+					result = insertItem.executeUpdate();
+					
+					
+				}catch(NumberFormatException e) {
+
+					e.printStackTrace();
+				}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		}	
+		
+		if(result != 0) {
+			//Show "Save Successful" message
+			txtareaStatus.setText("Save successful. Item information updated.");
+			fillData(conn.prepareStatement("SELECT * FROM ITEMS"));
+			hideAllFields();
+		}else {
+			//Show "Save Failed" message
+			txtareaStatus.setText("Save failed. Item information not updated. \n\nDEBUG: Result is " + result);
 		}
 	}
 	
@@ -234,6 +271,7 @@ public class ViewItemController extends MainController{
 		if(txtfieldUPC.isVisible()) txtfieldUPC.setEditable(false);
 		hideAllFields();
 		hideSearchButtons();
+		hideSaveButtons();
 		
 		try {
 			fillData(conn.prepareStatement("SELECT * FROM ITEMS"));
