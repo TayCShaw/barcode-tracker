@@ -53,4 +53,15 @@ public class HomeController extends MainController{
 		switchScene("ViewInventory.fxml");
 		getStage().setTitle("Inventory");
 	}
+	
+	
+	public void viewRecipeButtonClicked(ActionEvent event) throws IOException{
+		switchScene("ViewRecipes.fxml");
+		getStage().setTitle("Recipes");
+	}
+	
+	public void addRecipeButtonClicked(ActionEvent event) throws IOException{
+		switchScene("AddRecipe.fxml");
+		getStage().setTitle("New Recipe");
+	}
 }
