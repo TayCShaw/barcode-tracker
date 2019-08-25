@@ -29,15 +29,15 @@ public class Main extends Application{
 	
 	
 	/**
-	 * This is used when creating an executable JAR. The program will
-	 * attempt to create a new directory ("DB") on the host machine
+	 * This is used to create the program's folder. The program will
+	 * attempt to create a new directory ("ItemTracker") on the host machine
 	 * on the "C:/" drive. This will store the data necessary for the
 	 * program's uses.
 	 * 
 	 * Will possibly rework later on.
 	 */
 	public static void createFile() {
-		String dbdir = "C:/DB";
+		String dbdir = "C:/ItemTracker";
 		File f = new File(dbdir);
 		if(!f.exists()) {
 			f.mkdir();
@@ -53,6 +53,19 @@ public class Main extends Application{
 				e.printStackTrace();
 			}
 		}		
+		
+		String recipeFile = "recipes.txt";
+		String recipePath = dbdir + "/" + recipeFile;
+		File f3 = new File(recipePath);
+		if(!f3.exists()) {
+			try {
+				f3.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		
 		String dbUrl = "jdbc:ucanaccess://" + dbPath;
 		connectionString = dbUrl;
 	}
