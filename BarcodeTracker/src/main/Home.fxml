@@ -6,6 +6,9 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -32,45 +35,68 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <VBox alignment="BOTTOM_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
+            <GridPane prefHeight="541.0" prefWidth="800.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="401.0" minWidth="10.0" prefWidth="400.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="407.0" minWidth="10.0" prefWidth="400.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="160.0" minHeight="10.0" prefHeight="160.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="120.0" minHeight="10.0" prefHeight="107.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="181.0" minHeight="10.0" prefHeight="49.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="226.0" minHeight="10.0" prefHeight="183.0" vgrow="SOMETIMES" />
+              </rowConstraints>
                <children>
-                  <Button fx:id="btnViewInventory" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewButtonClicked" prefHeight="40.0" prefWidth="150.0" text="View Inventory" textAlignment="CENTER">
-                     <VBox.margin>
-                        <Insets bottom="30.0" top="60.0" />
-                     </VBox.margin>
+                  <Button fx:id="btnViewInventory" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#viewButtonClicked" prefHeight="40.0" prefWidth="150.0" text="View Inventory" textAlignment="CENTER" GridPane.halignment="RIGHT" GridPane.valignment="BOTTOM">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnAddItems" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Add Items">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
+                  <Button fx:id="btnAddItems" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Add Items" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnRemoveItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Remove Items">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
+                  <Button fx:id="btnRemoveItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Remove Items" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets right="20.0" />
+                     </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnQuit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Quit">
-                     <VBox.margin>
-                        <Insets bottom="160.0" />
-                     </VBox.margin>
+                  <Button fx:id="btnQuit" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#exitButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Quit" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <font>
                         <Font size="17.0" />
                      </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnViewRecipes" mnemonicParsing="false" onAction="#viewRecipeButtonClicked" prefHeight="40.0" prefWidth="150.0" text="View Recipes" GridPane.columnIndex="1" GridPane.valignment="BOTTOM">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnAddRecipe" mnemonicParsing="false" onAction="#addRecipeButtonClicked" prefHeight="40.0" prefWidth="150.0" text="Add Recipe" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="20.0" />
+                     </GridPane.margin>
                   </Button>
                </children>
-            </VBox>
+            </GridPane>
          </children>
       </VBox>
    </center>
