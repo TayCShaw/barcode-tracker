@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.AddRecipeController">
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <GridPane minHeight="275.0" minWidth="-Infinity" prefHeight="474.0" prefWidth="700.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="93.0" />
+                <ColumnConstraints hgrow="NEVER" maxWidth="241.0" minWidth="138.0" prefWidth="235.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="86.0" minWidth="10.0" prefWidth="86.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="182.0" minWidth="10.0" prefWidth="182.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="482.0" minWidth="10.0" prefWidth="108.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="30.0" minHeight="10.0" prefHeight="42.0" vgrow="NEVER" />
+                <RowConstraints maxHeight="31.0" minHeight="0.0" prefHeight="31.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="30.0" minHeight="0.0" prefHeight="21.0" vgrow="NEVER" />
+                  <RowConstraints maxHeight="85.0" minHeight="0.0" prefHeight="85.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="31.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="85.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="150.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+               <children>
+                  <Label fx:id="lblRecipeName" text="Recipe Name" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <Label fx:id="lblServings" text="Servings" GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <Label fx:id="lblCookingTime" text="Cooking Time" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin></Label>
+                  <TextField fx:id="txtfieldRecipeName" maxWidth="-Infinity" minWidth="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                  <TextField fx:id="txtfieldServings" maxWidth="-Infinity" prefWidth="40.0" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <TextField fx:id="txtfieldHours" maxWidth="-Infinity" prefWidth="65.0" promptText="Hours" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.valignment="CENTER" />
+                  <TextField fx:id="txtfieldMinutes" maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="65.0" promptText="Minutes" GridPane.columnIndex="3" GridPane.halignment="LEFT">
+                     <GridPane.margin>
+                        <Insets left="93.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label fx:id="lblHr" text="hr" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets left="68.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="lblMin" text="min" GridPane.columnIndex="3">
+                     <GridPane.margin>
+                        <Insets left="160.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <ChoiceBox fx:id="choiceboxServings" prefHeight="25.0" prefWidth="131.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </ChoiceBox>
+                  <Label fx:id="lblTemperature" text="Temperature" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtfieldTemperature" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="65.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                  <ChoiceBox fx:id="choiceboxTemperature" prefWidth="10.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Label fx:id="lblIngredients" text="Ingredients" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <Label fx:id="lblDirections" text="Directions" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextArea fx:id="txtareaIngredients" prefHeight="200.0" prefWidth="510.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                  <TextArea fx:id="txtareaDirections" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                  <Button fx:id="btnSaveRecipe" mnemonicParsing="false" onAction="#btnSaveRecipeClicked" text="Save Recipe" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets right="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnClear" mnemonicParsing="false" onAction="#btnClearClicked" text="Clear" GridPane.columnIndex="2" GridPane.rowIndex="8">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Button>
+                  <Button fx:id="btnBack" mnemonicParsing="false" text="Back" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                     <GridPane.margin>
+                        <Insets left="5.0" />
+                     </GridPane.margin>
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="lblErrorMessage" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" GridPane.valignment="TOP">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="Tags" GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets right="5.0" />
+                     </GridPane.margin>
+                  </Label>
+                  <TextField fx:id="txtfieldTags" prefHeight="25.0" prefWidth="246.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" GridPane.valignment="TOP" />
+               </children>
+            </GridPane>
+         </children>
+      </VBox>
+   </center>
+</BorderPane>
