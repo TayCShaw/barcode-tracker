@@ -659,7 +659,7 @@ public class ViewItemController extends MainController{
 		MenuItem singleAdd = new MenuItem("Add Item");
 		MenuItem bulkAdd = new MenuItem("Bulk Add");
 		menuBtnAdd.getItems().addAll(singleAdd, bulkAdd);
-		
+	
 		singleAdd.setOnAction(new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -673,7 +673,6 @@ public class ViewItemController extends MainController{
 				addBulkClicked(event);
 			}
 		});
-		
 	}
 	
 	
