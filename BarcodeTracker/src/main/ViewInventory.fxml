@@ -142,11 +142,7 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <MenuButton fx:id="menuBtnAdd" mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" text="Add..." GridPane.halignment="CENTER">
-                    <items>
-                      <MenuItem mnemonicParsing="false" text="Action 1" />
-                      <MenuItem mnemonicParsing="false" text="Action 2" />
-                    </items>
+                  <MenuButton fx:id="menuBtnAdd" mnemonicParsing="false" prefHeight="39.0" prefWidth="115.0" text="Add..." textAlignment="CENTER" GridPane.halignment="CENTER">
                      <font>
                         <Font size="18.0" />
                      </font>
