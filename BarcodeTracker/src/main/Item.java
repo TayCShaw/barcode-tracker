@@ -1,8 +1,5 @@
 package main;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
