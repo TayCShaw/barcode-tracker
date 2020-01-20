@@ -1,8 +1,9 @@
 package main;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Recipe {
+public class Recipe implements Serializable{
 
 	/*
 	 * Everything needed in a recipe:
@@ -17,8 +18,10 @@ public class Recipe {
 	private int cookTime; // Stored as minutes, can be calculated as hours and mins for presentation to user
 	private int cookTemp;
 	private String numberServings;
+	private String directions;
 	private String notes;
-	private ArrayList<String> categoryTags;
+	private String mainCategory;
+	private ArrayList<String> otherTags;
 	private ArrayList<String> ingredients;
 	
 	
@@ -27,17 +30,19 @@ public class Recipe {
 		cookTime = 0;
 		cookTemp = 0;
 		numberServings = "";
+		directions = "";
 		notes = "";
-		setCategoryTags(new ArrayList<String>());
+		setMainCategory("");
+		otherTags = new ArrayList<String>();
 		ingredients = new ArrayList<String>();
 	}
 	
-	public Recipe(String recipe, int time, int temp, String servings, String notes) {
-		recipeName = recipe;
-		cookTime = time;
-		numberServings = servings;
-		this.notes = notes;
-	}
+//	public Recipe(String recipe, int time, int temp, int servings, String notes) {
+//		recipeName = recipe;
+//		cookTime = time;
+//		numberServings = servings;
+//		this.notes = notes;
+//	}
 
 
 	public String getRecipeName() {
@@ -100,13 +105,35 @@ public class Recipe {
 	}
 
 
-	public ArrayList<String> getCategoryTags() {
-		return categoryTags;
+	public ArrayList<String> getOtherTags() {
+		return otherTags;
 	}
 
 
-	public void setCategoryTags(ArrayList<String> categoryTags) {
-		this.categoryTags = categoryTags;
+	public void setOtherTags(ArrayList<String> categoryTags) {
+		this.otherTags = categoryTags;
+	}
+
+	public String getDirections() {
+		return directions;
+	}
+
+	public void setDirections(String directions) {
+		this.directions = directions;
+	}
+
+	public String getMainCategory() {
+		return mainCategory;
+	}
+
+	public void setMainCategory(String mainCategory) {
+		this.mainCategory = mainCategory;
+	}
+	
+	public String toString() {
+		return(recipeName + " |\\| " + cookTime + " at " + cookTemp + " |\\| " +
+				numberServings + " servings |\\| " + "directions:\n" + directions + 
+				" |\\| " + notes + " |\\| " + mainCategory + " |\\| then theres two arraylists");
 	}
 	
 }
